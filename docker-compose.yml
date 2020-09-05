@@ -1,6 +1,10 @@
 version: '2.1'
 
-services:
+networks:
+  monitor-net:
+    driver: bridge
+
+services:         
   wireguard:
     image: linuxserver/wireguard
     container_name: wireguard
@@ -8,8 +12,8 @@ services:
       - NET_ADMIN
       - SYS_MODULE
     environment:
-      - PUID=1000
-      - PGID=1000
+            # - PUID=1001
+            #      - PGID=1001
       - TZ=America/New_York
         #- SERVERURL=wireguard.domain.com #optional
       - SERVERPORT=51820 #optional
@@ -24,43 +28,3 @@ services:
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
-  grafana:
-    image: grafana/grafana:7.1.1
-    container_name: grafana
-    volumes:
-      - grafana_data:/var/lib/grafana
-      - ./grafana/provisioning:/etc/grafana/provisioning
-    environment:
-      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
-      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
-      - GF_USERS_ALLOW_SIGN_UP=false
-        #- GF_SMTP_ENABLED=true
-        #- GF_SMTP_HOST=
-        #- GF_SMTP_USER=
-        #- GF_SMTP_PASSWORD=
-      - GF_PANELS_DISABLE_SANITIZE_HTML=true
-        #- GF_SERVER_DOMAIN=<lan ip address>
-    restart: unless-stopped
-    expose:
-      - 3000
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
-  influxdb:
-    image: influxdb
-    ports:
-      - 8086:8086
-    environment:
-      - INFLUXDB_DB=printlab-influxdb
-      - INFLUXDB_HTTP_AUTH_ENABLED
-      - INFLUXDB_ADMIN_USER=push
-      - INFLUXDB_ADMIN_PASSWORD=security121
-      - INFLUXDB_USER=influxuser
-      - INFLUXDB_USER_PASSWORD=gimmedata
-    volumes:
-      - ./influxdb:/var/lib/influxdb
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
