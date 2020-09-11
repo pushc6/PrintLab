@@ -53,5 +53,7 @@ services:
     ports:
       - 8088:80
       - 4435:443
+    depends_on: 
+      - wireguard
     restart: unless-stopped
 
