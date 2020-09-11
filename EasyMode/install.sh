@@ -30,7 +30,7 @@ sudo apt-get install docker-compose -y
 
 echo "Installing PrintLab alpha 1"
 cd /usr/local
-git clone http://github.com/pushc6/PrintLab.git
+sudo git clone http://github.com/pushc6/PrintLab.git
 cd PrintLab
 
 sudo su - dockeruser -c "docker-compose up -d"
