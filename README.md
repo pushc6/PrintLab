@@ -9,16 +9,12 @@ First, setup port forwarding of UDP port 51820 to your pi's IP address. Giving y
 ## Easy mode install
 If you have a fresh install on your Pi and want the minimal muss and fuss this is for you. This will download and install everything you need to get the PrintLab up and running. 
 
-1. Copy contents of install.sh in the EasyMode folder of this repository. 
+1. Obtain and install Ubuntu 20.04+ from https://ubuntu.com/download/raspberry-pi 
 2. ssh into your pi via ssh pi@piaddress
-3. nano /tmp/install.sh
-4. Paste contents of install.sh into this new file.
-5. hit ctrl + x when prompted to save, press 'y' for yes.
-6. chmod 777 /tmp/install.sh
-7. /tmp/install.sh
-8. Profit.
+3. run the following command: "curl https://raw.githubusercontent.com/pushc6/PrintLab/master/EasyMode/install.sh | bash" without the quotes.
+4. Profit.
 
-After the script finishes everything should be installed and running. Point your browser to http://piaddress:9453 to get your WireGuard QRCode.
+After the script finishes everything should be installed and running. Point your browser to http://piaddress:8088 to get your WireGuard QRCode.
 
 ## Familiar with docker-compose install
 
