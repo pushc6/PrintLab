@@ -8,7 +8,7 @@ echo "Finished updating apt"
 
 echo""
 echo "Creating dockeruser"
-sudo useradd --system dockeruser
+sudo useradd dockeruser
 
 echo ""
 echo "Installing docker-ce"
