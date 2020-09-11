@@ -86,6 +86,16 @@ cd PrintLab
 
 sudo su - dockeruser -c "docker-compose up -d"
 
-echo "done"
+
+cat << "EOF"
+    ____  ____  _   __________
+   / __ \/ __ \/ | / / ____/ /
+  / / / / / / /  |/ / __/ / / 
+ / /_/ / /_/ / /|  / /___/_/  
+/_____/\____/_/ |_/_____(_)   
+
+EOF
+                              
+
 ipaddy = hostname -I
 echo "To access your QR code please point a web browser to: http://$ipaddy:8088 and scan the QRCode with the wireguard client." 
