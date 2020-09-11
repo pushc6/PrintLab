@@ -37,7 +37,8 @@ EOF
 
 echo "Updating apt repo" 
 
-sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get update
+sudo apt-get upgrade -y
 
 echo "Finished updating apt"
 
