@@ -29,7 +29,7 @@ echo "Installing docker-compose"
 sudo apt-get install docker-compose -y
 
 echo "Installing PrintLab alpha 1"
-cd /opt
+cd /usr/local
 git clone http://github.com/pushc6/PrintLab.git
 cd PrintLab
 
