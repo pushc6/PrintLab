@@ -12,8 +12,8 @@ services:
       - NET_ADMIN
       - SYS_MODULE
     environment:
-            # - PUID=1001
-            #      - PGID=1001
+      - PUID=1001
+      - PGID=1001
       - TZ=America/New_York
         #- SERVERURL=wireguard.domain.com #optional
       - SERVERPORT=51820 #optional
@@ -28,3 +28,30 @@ services:
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
+
+  portainer:
+    image: portainer/portainer
+    command: -H unix:///var/run/docker.sock
+    restart: always
+    ports:
+      - 9000:9000
+      - 8000:8000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer_data:/data
+
+  nginx:
+    image: linuxserver/nginx
+    container_name: nginx
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=America/New_York
+    volumes:
+      - ./nginx_config:/config
+      - ./config:/config/www/wgconfig
+    ports:
+      - 8088:80
+      - 4435:443
+    restart: unless-stopped
+
