@@ -106,5 +106,4 @@ cat << "EOF"
 EOF
                               
 
-ipaddy=hostname -I
-echo "To access your QR code please point a web browser to: http://$ipaddy:8088 and scan the QRCode with the wireguard client." 
+echo "To access your QR code please point a web browser to: http://piaddress:8088 and scan the QRCode with the wireguard client." 
