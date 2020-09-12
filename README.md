@@ -29,7 +29,7 @@ ubuntu@ubuntu:~$ ps -ef | grep apt
 ubuntu     45931    2142  0 03:47 pts/0    00:00:00 grep --color=auto apt
 ````
 
-3. ssh into your pi via ssh pi@piaddress
+3. ssh into your pi via ssh ubuntu@piaddress default password is ubuntu. Follow the prompts and re-login.
 4. run the following command: 
 ````
 curl https://raw.githubusercontent.com/pushc6/PrintLab/master/EasyMode/install.sh | bash
