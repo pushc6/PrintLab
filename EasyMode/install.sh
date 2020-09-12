@@ -98,7 +98,7 @@ sudo su - dockeruser -c "docker-compose up -d"
 
 echo ""
 echo "Getting rid of default resolver"
-sudo cat << "EOF" > /etc/systemd/resolved.conf
+sudo bash -c 'cat << EOF > /etc/systemd/resolved.conf
 [Resolve]
 DNS=127.0.0.0
 #FallbackDNS=
@@ -110,7 +110,7 @@ DNS=127.0.0.0
 #Cache=no
 DNSStubListener=no
 #ReadEtcHosts=yes
-EOF
+EOF'
 
 echo ""
 echo "Creating symlink to new resolv"
