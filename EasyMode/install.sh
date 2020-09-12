@@ -90,7 +90,8 @@ echo ""
 echo "Installing PrintLab alpha 1"
 cd /usr/local
 echo "Cloning PrintLab"
-sudo git clone http://github.com/pushc6/dev/PrintLab.git
+sudo git clone http://github.com/pushc6/PrintLab.git
+sudo git checkout dev
 cd PrintLab
 
 sudo su - dockeruser -c "docker-compose up -d"
