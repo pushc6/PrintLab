@@ -10,12 +10,27 @@ First, setup port forwarding of UDP port 51820 to your pi's IP address. Giving y
 If you have a fresh install on your Pi and want the minimal muss and fuss this is for you. This will download and install everything you need to get the PrintLab up and running. 
 
 1. Obtain and install Ubuntu 20.04+ from https://ubuntu.com/download/raspberry-pi 
+2. Be sure to update network-config on the boot root if you are using WiFi
 
 *NOTE*
-If this is a fresh install of ubuntu be sure to let it idle a about 15 minutes before starting. Ubuntu automatically updates and running this installer prior to it completing can cause weird behavior.
+If this is a fresh Ubuntu install fire up your pi, wait 2 minutes, then power cycle it if using WiFi. WiFi doesn't work until the 2nd boot with Ubuntu.
 
-2. ssh into your pi via ssh pi@piaddress
-3. run the following command: 
+*NOTE 2*
+If this is a fresh install of ubuntu be sure to let it idle a about 15 minutes before starting the install. Ubuntu automatically updates and running this installer prior to it completing can cause weird behavior. You can check that it's done by running the following command:
+
+````
+ps -ef | grep apt
+````
+
+If all you see is something similar to this, you can continue:
+
+````
+ubuntu@ubuntu:~$ ps -ef | grep apt
+ubuntu     45931    2142  0 03:47 pts/0    00:00:00 grep --color=auto apt
+````
+
+3. ssh into your pi via ssh pi@piaddress
+4. run the following command: 
 ````
 curl https://raw.githubusercontent.com/pushc6/PrintLab/master/EasyMode/install.sh | bash
 ````
