@@ -98,7 +98,7 @@ sudo su - dockeruser -c "docker-compose up -d"
 
 echo ""
 echo "Getting rid of default resolver"
-cat << "EOF" > test.txt
+sudo cat << "EOF" > test.txt
 [Resolve]
 DNS=127.0.0.0
 #FallbackDNS=
