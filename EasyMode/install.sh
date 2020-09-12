@@ -92,6 +92,7 @@ cd /usr/local
 echo "Cloning PrintLab"
 sudo git clone http://github.com/pushc6/PrintLab.git
 sudo git checkout dev
+sudo git pull -r
 cd PrintLab
 
 sudo su - dockeruser -c "docker-compose up -d"
