@@ -87,6 +87,26 @@ echo "Installing docker-compose"
 sudo apt-get install docker-compose -y
 
 echo ""
+echo "Getting rid of default resolver"
+cat << "EOF" > test.txt
+[Resolve]
+DNS=127.0.0.0
+#FallbackDNS=
+#Domains=
+#LLMNR=no
+#MulticastDNS=no
+#DNSSEC=no
+#DNSOverTLS=no
+#Cache=no
+DNSStubListener=no
+#ReadEtcHosts=yes
+EOF
+
+echo ""
+echo "Creating symlink to new resolv"
+sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+
+echo ""
 echo "Installing PrintLab alpha 1"
 cd /usr/local
 echo "Cloning PrintLab"
