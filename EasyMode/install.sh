@@ -87,6 +87,15 @@ echo "Installing docker-compose"
 sudo apt-get install docker-compose -y
 
 echo ""
+echo "Installing PrintLab alpha 1"
+cd /usr/local
+echo "Cloning PrintLab"
+sudo git clone http://github.com/pushc6/dev/PrintLab.git
+cd PrintLab
+
+sudo su - dockeruser -c "docker-compose up -d"
+
+echo ""
 echo "Getting rid of default resolver"
 cat << "EOF" > test.txt
 [Resolve]
@@ -105,16 +114,6 @@ EOF
 echo ""
 echo "Creating symlink to new resolv"
 sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
-
-echo ""
-echo "Installing PrintLab alpha 1"
-cd /usr/local
-echo "Cloning PrintLab"
-sudo git clone http://github.com/pushc6/dev/PrintLab.git
-cd PrintLab
-
-sudo su - dockeruser -c "docker-compose up -d"
-
 
 cat << "EOF"
     ____  ____  _   __________
