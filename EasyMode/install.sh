@@ -60,14 +60,23 @@ sudo apt-get install \
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
+echo ""
+echo "Adding apt repository for Docker"
 sudo add-apt-repository \
    "deb [arch=arm64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
 
+echo ""
+echo "Updating apt"
 sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
 
+echo ""
+echo "Installing docker"
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+
+echo ""
+echo "Adding dockeruser to docker group"
 sudo usermod -aG docker dockeruser
 
 echo "Finished installing docker"
@@ -80,8 +89,10 @@ echo ""
 echo "Installing docker-compose"
 sudo apt-get install docker-compose -y
 
+echo ""
 echo "Installing PrintLab alpha 1"
 cd /usr/local
+echo "Cloning PrintLab"
 sudo git clone http://github.com/pushc6/PrintLab.git
 cd PrintLab
 
