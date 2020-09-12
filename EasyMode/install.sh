@@ -51,13 +51,10 @@ echo "Installing docker-ce"
 
 #curl -fsSL https://get.docker.com -o get-docker.sh
 #sudo sh get-docker.sh
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
+sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
 
+echo ""
+echo "grabbing gpg keys"
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 echo ""
@@ -109,5 +106,5 @@ cat << "EOF"
 EOF
                               
 
-ipaddy = hostname -I
+ipaddy=hostname -I
 echo "To access your QR code please point a web browser to: http://$ipaddy:8088 and scan the QRCode with the wireguard client." 
