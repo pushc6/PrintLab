@@ -30,7 +30,7 @@ cat << "EOF"
 			   / __ \_____(_)___  / /_/ /   ____ _/ /_ 
 			  / /_/ / ___/ / __ \/ __/ /   / __ `/ __ \
 			 / ____/ /  / / / / / /_/ /___/ /_/ / /_/ /
-			/_/   /_/  /_/_/ /_/\__/_____/\__,_/_.___/  .00001 Alpha Release
+			/_/   /_/  /_/_/ /_/\__/_____/\__,_/_.___/  .00002 Alpha Release
                                            
 EOF
 
@@ -49,28 +49,24 @@ sudo useradd dockeruser
 echo ""
 echo "Installing docker-ce"
 
-#curl -fsSL https://get.docker.com -o get-docker.sh
-#sudo sh get-docker.sh
-sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
+sudo curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+#sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
 
-echo ""
-echo "grabbing gpg keys"
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+#echo ""
+#echo "grabbing gpg keys"
+#sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-echo ""
-echo "Adding apt repository for Docker"
-sudo add-apt-repository \
-   "deb [arch=arm64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
+#echo ""
+#echo "Adding apt repository for Docker"
+#sudo add-apt-repository \
+#   "deb [arch=arm64] https://download.docker.com/linux/ubuntu \
+#   $(lsb_release -cs) \
+#   stable"
 
-echo ""
-echo "Updating apt"
-sudo apt-get update
-
-echo ""
-echo "Installing docker"
-sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+#echo ""
+#echo "Installing docker"
+#sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
 echo ""
 echo "Adding dockeruser to docker group"
@@ -87,7 +83,7 @@ echo "Installing docker-compose"
 sudo apt-get install docker-compose -y
 
 echo ""
-echo "Installing PrintLab alpha 1"
+echo "Installing PrintLab alpha 2"
 cd /usr/local
 echo "Cloning PrintLab"
 sudo git clone http://github.com/pushc6/PrintLab.git
@@ -98,10 +94,10 @@ cd PrintLab
 sudo su - dockeruser -c "docker-compose up -d"
 
 echo ""
-echo "Getting rid of default resolver"
-sudo bash -c 'cat << EOF > /etc/systemd/resolved.conf
-[Resolve]
-DNS=127.0.0.0
+#echo "Getting rid of default resolver"
+#sudo bash -c 'cat << EOF > /etc/systemd/resolved.conf
+#[Resolve]
+#DNS=127.0.0.0
 #FallbackDNS=
 #Domains=
 #LLMNR=no
@@ -109,15 +105,15 @@ DNS=127.0.0.0
 #DNSSEC=no
 #DNSOverTLS=no
 #Cache=no
-DNSStubListener=no
+#DNSStubListener=no
 #ReadEtcHosts=yes
-EOF'
+#EOF'
 
-echo ""
-echo "Creating symlink to new resolv"
-sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+#echo ""
+#echo "Creating symlink to new resolv"
+#sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 
-cat << "EOF"
+#cat << "EOF"
     ____  ____  _   __________
    / __ \/ __ \/ | / / ____/ /
   / / / / / / /  |/ / __/ / / 
