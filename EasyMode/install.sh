@@ -93,7 +93,7 @@ sudo sh -c "echo "iptable_nat" > /etc/modules-load.d/iptable_nat.conf"
 sudo sh -c "echo "ip6table_nat" > /etc/modules-load.d/ip6table_nat.conf"
 
 # Check if systemd-modules-load service is active.
-sudo systemctl status systemd-modules-load.service
+#sudo systemctl status systemd-modules-load.service
 
 # Enable IP forwarding.
 sudo sysctl -w net.ipv4.ip_forward=1
