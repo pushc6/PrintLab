@@ -56,9 +56,11 @@ services:
     restart: unless-stopped
   wg-gui:
     container_name: wg_gui
-    command: -H unix:///var/run/docker.sock
     image: embarkstudios/wireguard-ui:latest
     entrypoint: /wireguard-ui
+    environment:
+      - PUID: 1001
+      - PGID: 1001
     ports:
       - 8080:8080
       - 5555:5555
