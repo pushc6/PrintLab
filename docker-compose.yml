@@ -75,6 +75,8 @@ subspace:
     - /opt/docker/subspace:/data
    restart: unless-stopped
    environment:
+    - PGID=1001
+    - PUID=1001
     - SUBSPACE_HTTP_HOST=subspace.example.org
     - SUBSPACE_LETSENCRYPT=false
     - SUBSPACE_HTTP_INSECURE=true
