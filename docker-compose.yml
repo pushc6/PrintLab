@@ -63,3 +63,4 @@ services:
       - 5555:5555
     volumes:
       - ./wg-gui/:/data
+      - /var/run/docker.sock:/var/run/docker.sock
