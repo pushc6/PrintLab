@@ -80,7 +80,7 @@ sudo systemctl disable systemd-resolved
 sudo systemctl stop systemd-resolved
 
 # Set DNS server.
-sudo echo nameserver 1.1.1.1 >/etc/resolv.conf
+sudo sh -c "echo nameserver 1.1.1.1 >/etc/resolv.conf"
 
 # Load modules.
 sudo modprobe wireguard
@@ -88,9 +88,9 @@ sudo modprobe iptable_nat
 sudo modprobe ip6table_nat
 
 # Enable modules when rebooting.
-sudo echo "wireguard" > /etc/modules-load.d/wireguard.conf
-sudo echo "iptable_nat" > /etc/modules-load.d/iptable_nat.conf
-sudo echo "ip6table_nat" > /etc/modules-load.d/ip6table_nat.conf
+sudo sh -c "echo "wireguard" > /etc/modules-load.d/wireguard.conf"
+sudo sh -c "echo "iptable_nat" > /etc/modules-load.d/iptable_nat.conf"
+sudo sh -c "echo "ip6table_nat" > /etc/modules-load.d/ip6table_nat.conf"
 
 # Check if systemd-modules-load service is active.
 sudo systemctl status systemd-modules-load.service
