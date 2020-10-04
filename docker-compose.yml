@@ -4,31 +4,7 @@ networks:
   monitor-net:
     driver: bridge
 
-services:         
-  wireguard:
-    image: 
-    container_name: wireguard
-    cap_add:
-      - NET_ADMIN
-      - SYS_MODULE
-    environment:
-      - PUID=1001
-      - PGID=1001
-      - TZ=America/New_York
-        #- SERVERURL=wireguard.domain.com #optional
-      - SERVERPORT=51820 #optional
-      - PEERS=1 #optional
-      - PEERDNS=auto #optional
-        #ss- INTERNAL_SUBNET=10.13.13.0 #optional
-    volumes:
-      - ./config:/config
-      - ./modules:/lib/modules
-    ports:
-      - 51820:51820/udp
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
-    restart: unless-stopped
-
+services:
   portainer:
     image: portainer/portainer
     command: -H unix:///var/run/docker.sock
@@ -53,7 +29,7 @@ services:
     ports:
       - 8088:80
       - 4435:443
-    depends_on: 
+    depends_on:
       - wireguard
     restart: unless-stopped
 
@@ -78,4 +54,24 @@ services:
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
-
+  subspace:
+    image: subspacecommunity/subspace:latest
+    container_name: subspace
+    volumes:
+      - /opt/docker/subspace:/data
+    restart: unless-stopped
+    environment:
+      - SUBSPACE_HTTP_HOST=subspace.example.org
+      - SUBSPACE_LETSENCRYPT=false
+      - SUBSPACE_HTTP_INSECURE=true
+      - SUBSPACE_HTTP_ADDR=":80"
+      - SUBSPACE_NAMESERVER=1.1.1.1
+      - SUBSPACE_LISTENPORT=51820
+      - SUBSPACE_IPV4_POOL=10.99.97.0/24
+      - SUBSPACE_IPV6_POOL=fd00::10:97:0/64
+      - SUBSPACE_IPV4_GW=10.99.97.1
+      - SUBSPACE_IPV6_GW=fd00::10:97:1
+      - SUBSPACE_IPV6_NAT_ENABLED=1
+    cap_add:
+      - NET_ADMIN
+    network_mode: "host"

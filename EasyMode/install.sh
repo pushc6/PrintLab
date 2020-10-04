@@ -51,22 +51,6 @@ echo "Installing docker-ce"
 
 sudo curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
-#sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
-
-#echo ""
-#echo "grabbing gpg keys"
-#sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-#echo ""
-#echo "Adding apt repository for Docker"
-#sudo add-apt-repository \
-#   "deb [arch=arm64] https://download.docker.com/linux/ubuntu \
-#   $(lsb_release -cs) \
-#   stable"
-
-#echo ""
-#echo "Installing docker"
-#sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
 echo ""
 echo "Adding dockeruser to docker group"
@@ -83,6 +67,40 @@ echo "Installing docker-compose"
 sudo apt-get install docker-compose -y
 
 echo ""
+echo "Installing WireGuard"
+add-apt-repository -y ppa:wireguard/wireguard
+apt-get update
+apt-get install -y wireguard
+
+# Remove dnsmasq because it will run inside the container.
+apt-get remove -y dnsmasq
+
+# Disable systemd-resolved if it blocks port 53.
+systemctl disable systemd-resolved
+systemctl stop systemd-resolved
+
+# Set DNS server.
+echo nameserver 1.1.1.1 >/etc/resolv.conf
+
+# Load modules.
+modprobe wireguard
+modprobe iptable_nat
+modprobe ip6table_nat
+
+# Enable modules when rebooting.
+echo "wireguard" > /etc/modules-load.d/wireguard.conf
+echo "iptable_nat" > /etc/modules-load.d/iptable_nat.conf
+echo "ip6table_nat" > /etc/modules-load.d/ip6table_nat.conf
+
+# Check if systemd-modules-load service is active.
+systemctl status systemd-modules-load.service
+
+# Enable IP forwarding.
+sysctl -w net.ipv4.ip_forward=1
+sysctl -w net.ipv6.conf.all.forwarding=1
+
+echo ""
+
 echo "Installing PrintLab alpha 2"
 cd /usr/local
 echo "Cloning PrintLab"
@@ -94,26 +112,8 @@ cd PrintLab
 sudo su - dockeruser -c "docker-compose up -d"
 
 echo ""
-#echo "Getting rid of default resolver"
-#sudo bash -c 'cat << EOF > /etc/systemd/resolved.conf
-#[Resolve]
-#DNS=127.0.0.0
-#FallbackDNS=
-#Domains=
-#LLMNR=no
-#MulticastDNS=no
-#DNSSEC=no
-#DNSOverTLS=no
-#Cache=no
-#DNSStubListener=no
-#ReadEtcHosts=yes
-#EOF'
 
-#echo ""
-#echo "Creating symlink to new resolv"
-#sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
-
-#cat << "EOF"
+cat << "EOF"
     ____  ____  _   __________
    / __ \/ __ \/ | / / ____/ /
   / / / / / / /  |/ / __/ / / 
