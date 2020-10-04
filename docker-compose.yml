@@ -56,6 +56,7 @@ services:
     restart: unless-stopped
   wg-gui:
     container_name: wg_gui
+    command: -H unix:///var/run/docker.sock
     image: embarkstudios/wireguard-ui:latest
     entrypoint: /wireguard-ui
     ports:
