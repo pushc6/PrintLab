@@ -16,22 +16,22 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./portainer_data:/data
 
-  nginx:
-    image: linuxserver/nginx
-    container_name: nginx
-    environment:
-      - PUID=1001
-      - PGID=1001
-      - TZ=America/New_York
-    volumes:
-      - ./nginx_config:/config
-      - ./config:/config/www/wgconfig
-    ports:
-      - 8088:80
-      - 4435:443
-    depends_on:
-      - wireguard
-    restart: unless-stopped
+#  nginx:
+#   image: linuxserver/nginx
+#    container_name: nginx
+#    environment:
+#      - PUID=1001
+#      - PGID=1001
+#      - TZ=America/New_York
+#    volumes:
+#      - ./nginx_config:/config
+#      - ./config:/config/www/wgconfig
+#    ports:
+#      - 8088:80
+#      - 4435:443
+#    depends_on:
+#      - wireguard
+#    restart: unless-stopped
 
   pihole:
     container_name: pihole
