@@ -46,7 +46,7 @@ services:
     environment:
       - PGID=1001
       - PUID=1001
-      - SUBSPACE_HTTP_HOST=home.ryanpampush.com
+      - SUBSPACE_HTTP_HOST=$vpnip
       - SUBSPACE_LETSENCRYPT=false
       - SUBSPACE_HTTP_INSECURE=true
       - SUBSPACE_HTTP_ADDR=":80"
