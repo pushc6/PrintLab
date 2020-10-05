@@ -117,7 +117,9 @@ cd PrintLab
 sudo git checkout dev
 sudo git pull -r
 
-sudo su - dockeruser -c "read -p \"What is the public IP or dynamic DNS for this VPN server?\" VPNIP; echo \"VPNIP=$VPNIP\" >> .env"
+read -p \"What is the public IP or dynamic DNS for this VPN server?\" VPNIP
+echo "VPNIP=$VPNIP" > /tmp/.env
+sudo cp /tmp/.env /usr/local/PrintLab/.env
 #read -p "What is the public IP or dynamic DNS for this VPN server? " vpnip
 #export $vpnip
 
