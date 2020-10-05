@@ -1,5 +1,5 @@
 #!/bin/bash
 
-HTTPHOST=$(hostname | awk '{print $1}')
+HTTPHOST=$(hostname -I| awk '{print $1}')
 
 echo $HTTPHOST
