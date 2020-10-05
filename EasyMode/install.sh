@@ -94,7 +94,7 @@ sudo sh -c "echo "ip6table_nat" > /etc/modules-load.d/ip6table_nat.conf"
 
 #Creating wg0.conf
 sudo sh -c "cd /etc/wireguard; umask 077; wg genkey | tee privatekey | wg pubkey > publickey; echo [Interface] >> /etc/wireguard/wg0.conf; echo Address = 10.38.20.1/24 >> /etc/wireguard/wg0.conf;
-echo ListenPort = 51928 >> /etc/wireguard/wg0.conf; privkey=$(sudo cat privatekey); echo privkey is $privkey; echo PrivateKey = $privkey >> /etc/wireguard/wg0.conf"
+echo ListenPort = 51928 >> /etc/wireguard/wg0.conf; privkey = $(sudo cat privatekey); echo privkey is $privkey; echo PrivateKey = $privkey >> /etc/wireguard/wg0.conf"
 
 # Check if systemd-modules-load service is active.
 #sudo systemctl status systemd-modules-load.service
