@@ -97,6 +97,8 @@ sudo bash -c "cd /etc/wireguard; umask 077; wg genkey | tee privatekey | wg pubk
 echo ListenPort = 51928 >> /etc/wireguard/wg0.conf"
 
 sudo bash -c "echo privkey is $(sudo cat /etc/wireguard/privatekey); echo PrivateKey = $(sudo cat /etc/wireguard/privatekey) >> /etc/wireguard/wg0.conf"
+sudo systemctl enable wg-quick@wg0
+sudo systemctl start wg-quick@wg0
 
 # Check if systemd-modules-load service is active.
 #sudo systemctl status systemd-modules-load.service
