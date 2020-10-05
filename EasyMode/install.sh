@@ -117,7 +117,7 @@ cd PrintLab
 sudo git checkout dev
 sudo git pull -r
 
-export VPNIP=$(read -p "What is the public IP or dynamic DNS for this VPN server?)
+read -p "What is the public IP or dynamic DNS for this VPN server? VPNIP; export VPNIP
 #read -p "What is the public IP or dynamic DNS for this VPN server? " vpnip
 #export $vpnip
 
