@@ -93,7 +93,7 @@ sudo sh -c "echo "iptable_nat" > /etc/modules-load.d/iptable_nat.conf"
 sudo sh -c "echo "ip6table_nat" > /etc/modules-load.d/ip6table_nat.conf"
 
 #Creating wg0.conf
-cd /etc/wireguard
+sudo sh -c "cd /etc/wireguard"
 sudo sh -c "umask 077; wg genkey | tee privatekey | wg pubkey > publickey"
 sudo sh -c "echo [Interface] >> /etc/wireguard/wg0.conf"
 sudo sh -c "echo Address = 10.38.20.1/24 >> /etc/wireguard/wg0.conf"
