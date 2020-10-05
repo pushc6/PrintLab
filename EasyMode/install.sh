@@ -30,7 +30,7 @@ cat << "EOF"
 			   / __ \_____(_)___  / /_/ /   ____ _/ /_ 
 			  / /_/ / ___/ / __ \/ __/ /   / __ `/ __ \
 			 / ____/ /  / / / / / /_/ /___/ /_/ / /_/ /
-			/_/   /_/  /_/_/ /_/\__/_____/\__,_/_.___/  .00003 Alpha Release
+			/_/   /_/  /_/_/ /_/\__/_____/\__,_/_.___/  .00004 Alpha Release
                                            
 EOF
 
@@ -119,9 +119,11 @@ sudo git pull -r
 
 read -p "What is the public IP or dynamic DNS for this VPN server: " VPNIP
 read -p "IP address of DNS resolver, use default to use this installers pihole instance [127.0.0.1]: " DNSSERVER 
+read -p "If this is being installed on a pi type \"arm\" without the quotes, otherwise hit enter or type \"latest\" [latest]: " SUBSVERSION 
 DNSSERVER=${DNSSERVER:-127.0.0.1}
+SUBSVERSION=${SUBSVERSION:-latest}
 HTTPHOST=`hostname --all-ip-addresses | awk '{print $1}'`
-echo -e "VPNIP=$VPNIP\nDNSSERVER=$DNSSERVER\nHTTPHOST=$HTTPHOST" > /tmp/.env
+echo -e "VPNIP=$VPNIP\nDNSSERVER=$DNSSERVER\nHTTPHOST=$HTTPHOST\nSUBSVERSION=$SUBSVERSION" > /tmp/.env
 
 sudo cp /tmp/.env /usr/local/PrintLab/.env
 #read -p "What is the public IP or dynamic DNS for this VPN server? " vpnip
