@@ -117,8 +117,11 @@ cd PrintLab
 sudo git checkout dev
 sudo git pull -r
 
-read -p "What is the public IP or dynamic DNS for this VPN server? " VPNIP
-echo "VPNIP=$VPNIP" > /tmp/.env
+read -p "What is the public IP or dynamic DNS for this VPN server: " VPNIP
+read -p "IP address of DNS resolver, use default to use this installers pihole instance [127.0.0.1]: " DNSSERVER 
+DNSSERVER=${DNSSERVER:-127.0.0.1}
+echo -e "VPNIP=$VPNIP\nDNSSERVER=$DNSSERVER" > /tmp/.env
+
 sudo cp /tmp/.env /usr/local/PrintLab/.env
 #read -p "What is the public IP or dynamic DNS for this VPN server? " vpnip
 #export $vpnip
