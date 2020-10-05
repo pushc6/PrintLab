@@ -1,4 +1,4 @@
 #!/bin/bash
 
-hostname -I
+hostname -I | awk '{print $1}'
 
