@@ -140,4 +140,4 @@ cat << "EOF"
 EOF
                               
 
-echo "To access your QR code please point a web browser to: http://piaddress:8088 and scan the QRCode with the wireguard client." 
+echo "To setup your wireguard clients go to http://$HTTPHOST" 
