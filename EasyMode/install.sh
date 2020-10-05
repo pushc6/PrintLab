@@ -120,7 +120,7 @@ sudo git pull -r
 read -p "What is the public IP or dynamic DNS for this VPN server: " VPNIP
 read -p "IP address of DNS resolver, use default to use this installers pihole instance [127.0.0.1]: " DNSSERVER 
 DNSSERVER=${DNSSERVER:-127.0.0.1}
-HTTPHOST=hostname -I | awk '{print $1}
+HTTPHOST=hostname -I | awk '{print $1}'
 echo -e "VPNIP=$VPNIP\nDNSSERVER=$DNSSERVER\nHTTPHOST=$HTTPHOST" > /tmp/.env
 
 sudo cp /tmp/.env /usr/local/PrintLab/.env
