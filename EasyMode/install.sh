@@ -97,7 +97,7 @@ cd /etc/wireguard
 sudo sh -c "umask 077; wg genkey | tee privatekey | wg pubkey > publickey"
 sudo sh -c "echo [Interface] >> /etc/wireguard/wg0.conf"
 sudo sh -c "echo Address = 10.38.20.1/24 >> /etc/wireguard/wg0.conf"
-sudo sh -c "echo ListenPort = 51928 v /etc/wireguard/wg0.conf"
+sudo sh -c "echo ListenPort = 51928 >> /etc/wireguard/wg0.conf"
 sudo sh -c "echo PrivateKey =  $(cat privatekey) >> /etc/wireguard/wg0.conf"
 
 # Check if systemd-modules-load service is active.
