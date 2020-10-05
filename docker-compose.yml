@@ -46,7 +46,7 @@ services:
     environment:
       - PGID=1001
       - PUID=1001
-      - SUBSPACE_HTTP_HOST=$VPNIP
+      - SUBSPACE_HTTP_HOST=10.37.70.37
       - SUBSPACE_LETSENCRYPT=false
       - SUBSPACE_HTTP_INSECURE=true
       - SUBSPACE_HTTP_ADDR=":80"
@@ -56,6 +56,7 @@ services:
       - SUBSPACE_IPV4_GW=10.99.97.1
       - SUBSPACE_IPV6_NAT_ENABLED=0    
       - SUBSPACE_DNSMASQ_DISABLED=1
+      - SUBSPACE_ENDPOINT_HOST=$VPNIP
     cap_add:
       - NET_ADMIN
     network_mode: "host"
