@@ -117,7 +117,7 @@ cd PrintLab
 sudo git checkout dev
 sudo git pull -r
 
-sudo bash -c "read -p 'What is the public IP or dynamic DNS for this VPN server?' VPNIP; export VPNIP; VPNIP is: $VPNIP"
+sudo bash -c "read -p 'What is the public IP or dynamic DNS for this VPN server?' VPNIP; export VPNIP; echo VPNIP is: $VPNIP"
 #read -p "What is the public IP or dynamic DNS for this VPN server? " vpnip
 #export $vpnip
 
