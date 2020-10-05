@@ -117,8 +117,9 @@ cd PrintLab
 sudo git checkout dev
 sudo git pull -r
 
-read -p "What is the public IP or dynamic DNS for this VPN server? " vpnip
-export $vpnip
+export VPNIP=$(read -p "What is the public IP or dynamic DNS for this VPN server?)
+#read -p "What is the public IP or dynamic DNS for this VPN server? " vpnip
+#export $vpnip
 
 sudo su - dockeruser -c "docker-compose up -d"
 
