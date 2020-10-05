@@ -1,4 +1,4 @@
 #!/bin/bash
 
-hostname -I | awk '{print $1}'
+hostname --all-ip-addresses | awk '{print $1}'
 
