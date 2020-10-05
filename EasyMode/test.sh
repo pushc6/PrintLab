@@ -2,5 +2,5 @@
 
 TEST=hostname --all-ip-addresses | awk '{print $1}'
 
-echo $TEST
+echo "test is $TEST"
 
