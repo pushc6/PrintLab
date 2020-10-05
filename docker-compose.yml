@@ -54,22 +54,27 @@ services:
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
-  wg-gui:
-    container_name: wg_gui
-    image: embarkstudios/wireguard-ui:latest
-    entrypoint: /wireguard-ui
-    privileged: true
-    environment:
-      - PUID=1001
-      - PGID=1001
-      - WIREGUARD_UI_CLIENT_IP_RANGE=10.37.70.87/32
-      - WIREGUARD_UI_WG_ENDPOINT=home.ryanpampush.com:51820
-      - WIREGUARD_UI_WG_ALLOWED_IPS=0.0.0.0/0
-      - WIREGUARD_UI_WG_DNS=10.37.70.37
-    ports:
-      - 8080:8080
-      - 5555:5555
+  subspace:
+    image: pushc6/subspace:latest
+    container_name: subspace
     volumes:
-      - ./wg-gui/:/data
-      - /var/run/docker.sock:/var/run/docker.sock
-    network_mode: host
+      - /opt/docker/subspace:/data
+    restart: unless-stopped
+    environment:
+      - PGID=1001
+      - PUID=1001
+      - SUBSPACE_HTTP_HOST=subspace.example.org
+      - SUBSPACE_LETSENCRYPT=false
+      - SUBSPACE_HTTP_INSECURE=true
+      - SUBSPACE_HTTP_ADDR=":80"
+      - SUBSPACE_NAMESERVER=1.1.1.1
+      - SUBSPACE_LISTENPORT=51820
+      - SUBSPACE_IPV4_POOL=10.99.97.0/24
+      - SUBSPACE_IPV6_POOL=fd00::10:97:0/64
+      - SUBSPACE_IPV4_GW=10.99.97.1
+      - SUBSPACE_IPV6_GW=fd00::10:97:1
+      - SUBSPACE_IPV6_NAT_ENABLED=1     
+      - SUBSPACE_DNSMASQ_DISABLED=1
+     cap_add:
+      - NET_ADMIN
+     network_mode: "host"
