@@ -1,6 +1,7 @@
 #!/bin/bash
 
-TEST=`hostname --all-ip-addresses | awk '{print $1}'`
-
-echo "test is $TEST 2"
-
+test -f /var/lib/dpkg/lock-frontend; then
+   echo "file exists"
+else
+  echo "file doesn't exist"
+fi
