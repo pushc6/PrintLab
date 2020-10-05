@@ -34,6 +34,11 @@ cat << "EOF"
                                            
 EOF
 
+FILE=/var/lib/dpkg/lock-frontend
+if [[ -f "$FILE" ]]; then
+  echo "apt currently running, please wait a few minutes and try again"
+  exit 1
+fi
 
 echo "Updating apt repo" 
 
