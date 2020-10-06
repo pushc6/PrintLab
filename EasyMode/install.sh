@@ -115,7 +115,7 @@ cd /usr/local
 echo "Cloning PrintLab"
 sudo git clone http://github.com/pushc6/PrintLab.git
 cd PrintLab
-sudo git checkout dev
+sudo git checkout arm
 sudo git pull -r
 
 read -p "What is the public IP or dynamic DNS for this VPN server: " VPNIP
