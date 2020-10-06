@@ -7,4 +7,4 @@ Install ubuntu server 20
 
 Login via ssh and issue the following command:
 
-bash <(wget --no-cache -q -O - https://raw.githubusercontent.com/pushc6/PrintLab/dev/EasyMode/install.sh)
+bash <(wget --no-cache -q -O - https://raw.githubusercontent.com/pushc6/PrintLab/arm/EasyMode/install.sh)
