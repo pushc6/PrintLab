@@ -120,11 +120,10 @@ sudo git pull -r
 
 read -p "What is the public IP or dynamic DNS for this VPN server: " VPNIP
 read -p "IP address of DNS resolver, use default to use this installers pihole instance [127.0.0.1]: " DNSSERVER 
-read -p "If this is being installed on a Raspberry Pi type \"arm\" without the quotes, otherwise hit enter or type \"latest\" [latest]: " SUBSVERSION 
 DNSSERVER=${DNSSERVER:-127.0.0.1}
 SUBSVERSION=${SUBSVERSION:-latest}
 HTTPHOST=`hostname --all-ip-addresses | awk '{print $1}'`
-echo -e "VPNIP=$VPNIP\nDNSSERVER=$DNSSERVER\nHTTPHOST=$HTTPHOST\nSUBSVERSION=$SUBSVERSION" > /tmp/.env
+echo -e "VPNIP=$VPNIP\nDNSSERVER=$DNSSERVER\nHTTPHOST=$HTTPHOST" > /tmp/.env
 
 sudo cp /tmp/.env /usr/local/PrintLab/.env
 #read -p "What is the public IP or dynamic DNS for this VPN server? " vpnip
