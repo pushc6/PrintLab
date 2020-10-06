@@ -38,7 +38,7 @@ services:
       - NET_ADMIN
     restart: unless-stopped
   subspace:
-    image: pushc6/subspace:$SUBSVERSION
+    image: pushc6/subspace:arm
     container_name: subspace
     volumes:
       - /opt/docker/subspace:/data
